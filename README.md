@@ -1,6 +1,6 @@
-# 🇮🇳 India Digital Clock 
+# 🇮🇳 India Digital Clock
 
-A stylish **India-based Digital Clock** built using HTML, CSS, and JavaScript.  
+A stylish **India-based Digital Clock** built using HTML, CSS, and JavaScript.
 It features a **real-time clock**, **animated goth UI**, **dark/light mode**, and a **12/24-hour format toggle**.
 
 ## 🚀 Features
