@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>India Digital Clock</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: 0.5s ease;
+    }
+
+    .container {
+      text-align: center;
+      padding: 40px;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      transition: 0.5s ease;
+      animation: fadeIn 1s ease;
+    }
+
+    h1 {
+      font-size: 70px;
+      letter-spacing: 3px;
+      animation: glow 2s infinite alternate;
+    }
+
+    p {
+      margin-top: 10px;
+      font-size: 20px;
+      opacity: 0.8;
+    }
+
+    .controls {
+      margin-top: 20px;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin: 5px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+    }
+
+    /* 🌙 Dark Goth Mode */
+    .dark {
+      background: radial-gradient(circle, #0a0a0a, #000000);
+      color: #e0e0e0;
+    }
+
+    .dark .container {
+      background: rgba(255, 255, 255, 0.05);
+      box-shadow: 0 0 30px rgba(255, 0, 100, 0.2);
+    }
+
+    .dark h1 {
+      color: #ff4d6d;
+      text-shadow: 0 0 10px #ff4d6d, 0 0 20px #ff1a4d;
+    }
+
+    /* ☀ Light Mode */
+    .light {
+      background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+      color: #000;
+    }
+
+    .light .container {
+      background: rgba(255, 255, 255, 0.6);
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    }
+
+    /* ✨ Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 5px #ff4d6d; }
+      to { text-shadow: 0 0 20px #ff1a4d; }
+    }
+
+  </style>
+</head>
+
+<body class="dark">
+
+  <div class="container">
+    <h1 id="time">00:00:00 AM</h1>
+    <p id="date">Loading...</p>
+
+    <div class="controls">
+      <button onclick="toggleMode()">🌙 Toggle Mode</button>
+      <button onclick="toggleFormat()">🕐 Toggle 12/24</button>
+    </div>
+  </div>
+
+  <script>
+    let is24Hour = false;
+
+    function updateClock() {
+      const now = new Date();
+
+      // India Time
+      const optionsTime = {
+        timeZone: "Asia/Kolkata",
+        hour: 'numeric',
+        minute: 'numeric',
+        second: 'numeric',
+        hour12: !is24Hour
+      };
+
+      const timeString = new Intl.DateTimeFormat('en-IN', optionsTime).format(now);
+      document.getElementById("time").textContent = timeString;
+
+      const optionsDate = {
+        timeZone: "Asia/Kolkata",
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      };
+
+      const dateString = new Intl.DateTimeFormat('en-IN', optionsDate).format(now);
+      document.getElementById("date").textContent = dateString;
+    }
+
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    function toggleMode() {
+      document.body.classList.toggle("dark");
+      document.body.classList.toggle("light");
+    }
+
+    function toggleFormat() {
+      is24Hour = !is24Hour;
+      updateClock();
+    }
+  </script>
+
+</body>
+</html>
