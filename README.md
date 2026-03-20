@@ -1,4 +1,4 @@
-# 🇮🇳 India Digital Clock (Goth Animated UI)
+# 🇮🇳 India Digital Clock 
 
 A stylish **India-based Digital Clock** built using HTML, CSS, and JavaScript.  
 It features a **real-time clock**, **animated goth UI**, **dark/light mode**, and a **12/24-hour format toggle**.
